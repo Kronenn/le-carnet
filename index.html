@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mes Recettes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    background: #f2f2f7;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* —— HEADER —— */
+  header {
+    background: #ffffff;
+    border-bottom: 0.5px solid #e5e5ea;
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .logo {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #1d1d1f;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff6b00;
+  }
+  .recipe-count {
+    font-size: 12px;
+    color: #86868b;
+    font-weight: 400;
+  }
+
+  /* —— HERO —— */
+  .hero {
+    background: #f5f5f7;
+    padding: 3.5rem 2rem 3rem;
+    text-align: center;
+    border-bottom: 0.5px solid #e5e5ea;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ff6b00;
+    margin-bottom: 0.75rem;
+  }
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: #1d1d1f;
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
+  }
+  .hero-title span { color: #ff6b00; }
+  .hero-sub {
+    font-size: 14px;
+    color: #86868b;
+    font-weight: 400;
+  }
+
+  /* —— GRID —— */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #86868b;
+    margin-bottom: 1rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  /* —— RECIPE CARD —— */
+  .recipe-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    border: 0.5px solid #e5e5ea;
+    transition: transform 0.15s, box-shadow 0.15s;
+    display: flex;
+    flex-direction: column;
+  }
+  .recipe-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .card-thumb {
+    height: 120px;
+    background: #f5f5f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-thumb svg { opacity: 0.2; }
+  .card-thumb.curry { background: linear-gradient(135deg, #fff3ed, #ffe0cc); }
+  .card-body { padding: 1rem 1.1rem 1.1rem; flex: 1; }
+  .card-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #ff6b00;
+    margin-bottom: 0.35rem;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #1d1d1f;
+    line-height: 1.3;
+    margin-bottom: 0.6rem;
+  }
+  .card-meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  .card-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: #86868b;
+    font-weight: 400;
+  }
+  .card-meta-item svg { flex-shrink: 0; }
+
+  /* —— ADD CARD —— */
+  .add-card {
+    background: transparent;
+    border-radius: 16px;
+    border: 1.5px dashed #d1d1d6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 2rem;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    text-decoration: none;
+    min-height: 180px;
+  }
+  .add-card:hover { border-color: #ff6b00; background: #fff8f5; }
+  .add-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f5f5f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .add-card:hover .add-icon { background: #fff3ed; }
+  .add-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #86868b;
+  }
+  .add-card:hover .add-label { color: #ff6b00; }
+
+  /* —— FOOTER —— */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 11px;
+    color: #aeaeb2;
+  }
+
+  /* —— MOBILE —— */
+  @media (max-width: 600px) {
+    .hero { padding: 2.5rem 1.25rem 2rem; }
+    .hero-title { font-size: 2.2rem; }
+    .container { padding: 1.5rem 1rem; }
+    .grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    header { padding: 1rem 1.25rem; }
+  }
+  @media (max-width: 380px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    Le Carnet
+  </div>
+  <span class="recipe-count">1 recette</span>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Ma collection</div>
+  <h1 class="hero-title">Cuisiner avec<br><span>intention</span></h1>
+  <p class="hero-sub">Des recettes simples, bien faites, toujours à portée de main.</p>
+</div>
+
+<div class="container">
+  <div class="section-title">Toutes les recettes</div>
+  <div class="grid">
+
+    <!-- Recette 1 -->
+    <a class="recipe-card" href="recette-curry-poulet-cajou.html">
+      <div class="card-thumb curry">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6h3.5a1.5 1.5 0 0 1 0 3H16v4"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Plat · Asiatique</div>
+        <div class="card-title">Curry de Poulet au Lait de Coco & Cajou</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#aeaeb2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            45 min
+          </div>
+          <div class="card-meta-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#aeaeb2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            4 pers.
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Ajouter une recette -->
+    <div class="add-card">
+      <div class="add-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#86868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <span class="add-label">Ajouter une recette</span>
+    </div>
+
+  </div>
+</div>
+
+<footer>Le Carnet · Fait avec ♥</footer>
+
+</body>
+</html>

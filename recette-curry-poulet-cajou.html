@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curry de Poulet au Lait de Coco & Cajou</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    background: #f2f2f7;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2.5rem 1.5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .card {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 780px;
+    max-width: 100%;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  }
+
+  /* —— HERO —— */
+  .hero {
+    background: #f5f5f7;
+    padding: 2.5rem 2.5rem 2rem;
+  }
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ff6b00;
+    margin-bottom: 0.6rem;
+  }
+  .title {
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: #1d1d1f;
+    line-height: 1.08;
+    margin-bottom: 1.5rem;
+  }
+  .title span { color: #ff6b00; }
+
+  .pills {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .pill {
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 0.35rem 1rem;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1d1d1f;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ff6b00;
+    flex-shrink: 0;
+  }
+
+  /* —— BODY —— */
+  .body {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+  }
+
+  /* —— INGRÉDIENTS —— */
+  .ing-col {
+    padding: 2rem 1.5rem;
+    border-right: 0.5px solid #e5e5ea;
+  }
+  .col-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #86868b;
+    margin-bottom: 1.2rem;
+  }
+  .ing-group {
+    margin-bottom: 1.4rem;
+  }
+  .ing-group:last-child { margin-bottom: 0; }
+  .ing-group-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #aeaeb2;
+    margin-bottom: 0.5rem;
+  }
+  .ing-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 0;
+    border-bottom: 0.5px solid #f2f2f7;
+    gap: 8px;
+  }
+  .ing-row:last-child { border-bottom: none; }
+  .ing-name {
+    font-size: 13px;
+    color: #1d1d1f;
+    font-weight: 400;
+  }
+  .ing-qty {
+    font-size: 12px;
+    font-weight: 500;
+    color: #86868b;
+    white-space: nowrap;
+  }
+
+  /* —— STEPS —— */
+  .steps-col {
+    padding: 2rem 2.5rem;
+  }
+
+  .mise-en-place {
+    background: #f5f5f7;
+    border-radius: 12px;
+    padding: 0.9rem 1.1rem;
+    font-size: 13px;
+    color: #86868b;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+  }
+  .mise-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #e5e5ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .mise-icon svg { width: 10px; height: 10px; fill: #86868b; }
+  .mise-label {
+    font-weight: 500;
+    color: #1d1d1f;
+    margin-right: 4px;
+  }
+
+  .step {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+    align-items: flex-start;
+  }
+  .step:last-child { margin-bottom: 0; }
+
+  .step-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #1d1d1f;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-content { flex: 1; }
+  .step-text {
+    font-size: 14px;
+    color: #1d1d1f;
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  .step-time {
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #ff6b00;
+    background: #fff3ed;
+    border-radius: 6px;
+    padding: 2px 9px;
+    letter-spacing: 0.02em;
+  }
+
+  .suggestion {
+    margin-top: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #86868b;
+    background: #f5f5f7;
+    border-radius: 6px;
+    padding: 3px 9px;
+  }
+  .suggestion::before {
+    content: '→';
+    font-size: 8px;
+    color: #aeaeb2;
+  }
+
+  /* —— NAV —— */
+  .nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #86868b;
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 8px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-back:hover { background: #f5f5f7; color: #1d1d1f; }
+
+  /* —— FOOTER —— */
+  .footer {
+    background: #f5f5f7;
+    border-top: 0.5px solid #e5e5ea;
+    padding: 1rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-text {
+    font-size: 11px;
+    color: #aeaeb2;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  /* —— PRINT —— */
+  @media print {
+    body { background: white; padding: 0; }
+    .card { box-shadow: none; border-radius: 0; width: 100%; }
+    .nav-back { display: none; }
+  }
+
+  /* —— MOBILE —— */
+  @media (max-width: 600px) {
+    body { padding: 0; }
+    .card { border-radius: 0; box-shadow: none; }
+    .hero { padding: 1.5rem 1.25rem 1.25rem; }
+    .title { font-size: 1.7rem; }
+    .body { grid-template-columns: 1fr; }
+    .ing-col {
+      border-right: none;
+      border-bottom: 0.5px solid #e5e5ea;
+      padding: 1.5rem 1.25rem;
+    }
+    .steps-col { padding: 1.5rem 1.25rem; }
+    .footer { padding: 0.75rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- HERO -->
+  <div class="hero">
+    <a class="nav-back" href="index.html">
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Le Carnet
+    </a>
+    <div class="eyebrow">Recette</div>
+    <h1 class="title">Curry de Poulet<br>au <span>Lait de Coco</span> & Cajou</h1>
+    <div class="pills">
+      <div class="pill">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        4 personnes
+      </div>
+      <div class="pill">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        45 min
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- INGRÉDIENTS -->
+    <div class="ing-col">
+      <div class="col-title">Ingrédients</div>
+
+      <div class="ing-group">
+        <div class="ing-group-label">Viande</div>
+        <div class="ing-row"><span class="ing-name">Filets de poulet</span><span class="ing-qty">600 g</span></div>
+      </div>
+
+      <div class="ing-group">
+        <div class="ing-group-label">Sauce & légumes</div>
+        <div class="ing-row"><span class="ing-name">Oignons</span><span class="ing-qty">2</span></div>
+        <div class="ing-row"><span class="ing-name">Gousses d'ail</span><span class="ing-qty">2</span></div>
+        <div class="ing-row"><span class="ing-name">Carottes</span><span class="ing-qty">4</span></div>
+        <div class="ing-row"><span class="ing-name">Gingembre frais</span><span class="ing-qty">10 g</span></div>
+        <div class="ing-row"><span class="ing-name">Lait de coco</span><span class="ing-qty">400 ml</span></div>
+        <div class="ing-row"><span class="ing-name">Concentré de tomates</span><span class="ing-qty">20 g</span></div>
+        <div class="ing-row"><span class="ing-name">Garam masala</span><span class="ing-qty">8 g</span></div>
+        <div class="ing-row"><span class="ing-name">Beurre</span><span class="ing-qty">10 g</span></div>
+        <div class="ing-row"><span class="ing-name">Huile de tournesol</span><span class="ing-qty">15 g</span></div>
+        <div class="ing-row"><span class="ing-name">Sucre</span><span class="ing-qty">4 g</span></div>
+      </div>
+
+      <div class="ing-group">
+        <div class="ing-group-label">Garniture</div>
+        <div class="ing-row"><span class="ing-name">Noix de cajou</span><span class="ing-qty">40 g</span></div>
+        <div class="ing-row"><span class="ing-name">Citron vert</span><span class="ing-qty">½</span></div>
+        <div class="ing-row"><span class="ing-name">Coriandre fraîche</span><span class="ing-qty">q.s.</span></div>
+      </div>
+    </div>
+
+    <!-- ÉTAPES -->
+    <div class="steps-col">
+      <div class="col-title">Préparation</div>
+
+      <div class="mise-en-place">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#86868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6h3.5a1.5 1.5 0 0 1 0 3H16v4"/></svg>
+        <div>
+          <span class="mise-label">Mise en place —</span>
+          Ciseler l'ail et l'oignon. Râper le gingembre et les carottes. Couper le poulet en petits dés.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-text">Faire chauffer beurre et huile à feu moyen-vif. Ajouter le garam masala et torréfier.</div>
+          <span class="step-time">1 min</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-text">Ajouter le sucre, le gingembre râpé, l'ail et l'oignon ciselés. Faire sauter.</div>
+          <span class="step-time">2–3 min</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-text">Ajouter le concentré de tomates, les carottes et le lait de coco. Baisser le feu et laisser mijoter à couvert.</div>
+          <span class="step-time">7–8 min</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-text">Ajouter le poulet et cuire à couvert.</div>
+          <span class="step-time">6–8 min</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-text">Goûter, ajuster l'assaisonnement et l'épaisseur. Dresser avec cajou, coriandre fraîche et un filet de citron vert.</div>
+          <div class="suggestion">Servir avec du riz basmati</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="footer-text">Curry de Poulet · Lait de Coco & Cajou</span>
+    <span class="footer-text">4 personnes</span>
+    <button id="pdf-btn" onclick="exportPDF()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      PDF
+    </button>
+  </div>
+
+</div>
+
+<style>
+  #pdf-btn {
+    background: transparent;
+    color: #aeaeb2;
+    border: 0.5px solid #d1d1d6;
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  #pdf-btn:hover { color: #1d1d1f; border-color: #86868b; }
+  #pdf-btn.loading { opacity: 0.5; pointer-events: none; }
+  @media print { #pdf-btn { display: none; } }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+async function exportPDF() {
+  const btn = document.getElementById('pdf-btn');
+  btn.classList.add('loading');
+  btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> …`;
+
+  const card = document.querySelector('.card');
+  const canvas = await html2canvas(card, {
+    scale: 2,
+    useCORS: true,
+    backgroundColor: '#ffffff'
+  });
+
+  const imgData = canvas.toDataURL('image/png');
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+  const pageW = pdf.internal.pageSize.getWidth();
+  const pageH = pdf.internal.pageSize.getHeight();
+  const margin = 10;
+  const imgW = pageW - margin * 2;
+  const imgH = (canvas.height * imgW) / canvas.width;
+  const y = imgH < pageH - margin * 2 ? (pageH - imgH) / 2 : margin;
+
+  pdf.addImage(imgData, 'PNG', margin, y, imgW, imgH);
+  pdf.save('recette-curry-poulet-cajou.pdf');
+
+  btn.classList.remove('loading');
+  btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF`;
+}
+</script>
+</body>
+</html>
