@@ -93,6 +93,7 @@
   }
   .card-thumb svg { opacity: 0.2; }
   .card-thumb.curry { background: linear-gradient(135deg, #fff3ed, #ffe0cc); }
+  .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .card-body { padding: 1rem 1.1rem 1.1rem; flex: 1; }
   .card-tag {
     font-size: 10px;
@@ -124,40 +125,6 @@
     font-weight: 400;
   }
   .card-meta-item svg { flex-shrink: 0; }
-
-  /* —— ADD CARD —— */
-  .add-card {
-    background: transparent;
-    border-radius: 16px;
-    border: 1.5px dashed #d1d1d6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 2rem;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-    text-decoration: none;
-    min-height: 180px;
-  }
-  .add-card:hover { border-color: #ff6b00; background: #fff8f5; }
-  .add-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: #f5f5f7;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .add-card:hover .add-icon { background: #fff3ed; }
-  .add-label {
-    font-size: 13px;
-    font-weight: 500;
-    color: #86868b;
-  }
-  .add-card:hover .add-label { color: #ff6b00; }
 
   /* —— FOOTER —— */
   footer {
@@ -196,7 +163,7 @@
     <!-- Recette 1 -->
     <a class="recipe-card" href="recette-curry-poulet-cajou.html">
       <div class="card-thumb curry">
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6h3.5a1.5 1.5 0 0 1 0 3H16v4"/></svg>
+        <img src="img/curry-poulet.jpg" alt="Curry de Poulet au Lait de Coco & Cajou">
       </div>
       <div class="card-body">
         <div class="card-tag">Plat · Asiatique</div>
@@ -214,13 +181,6 @@
       </div>
     </a>
 
-    <!-- Ajouter une recette -->
-    <div class="add-card">
-      <div class="add-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#86868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <span class="add-label">Ajouter une recette</span>
-    </div>
 
   </div>
 </div>
